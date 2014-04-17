@@ -1,0 +1,172 @@
+Variables
+
+Anand.DB-# \set k 30
+
+Anand.DB-# \echo :k
+30
+
+Anand.DB-# \set x `date /T`
+
+Anand.DB-# \echo :x
+Thu 04/17/2014
+
+Anand.DB=# select * from trade where id = :k ;
+ id |   trd_dt   | type | month | name | trd_qty |   ent_dt   | comments
+----+------------+------+-------+------+---------+------------+----------
+ 10 | 2014-03-26 | PE   | MAY   | 6500 |    -150 | 2014-04-17 | INT 00
+(1 row)
+
+Anand.DB=# \set t trade
+
+Anand.DB=# select * from :t where id = :k ;
+ id |   trd_dt   | type | month | name | trd_qty |   ent_dt   | comments
+----+------------+------+-------+------+---------+------------+----------
+ 10 | 2014-03-26 | PE   | MAY   | 6500 |    -150 | 2014-04-17 | INT 00
+(1 row)
+
+Anand.DB=# \set myvar `psql -A -t -c "select version()" postgres `
+
+Anand.DB=# \echo :myvar
+PostgreSQL 9.3.4, compiled by Visual C++ build 1600, 32-bit
+
+Anand.DB=# \set m `psql -d Anand.DB -c "SELECT count(*) from TRADE;" `
+Anand.DB=# \echo :m
+ count
+-------
+    17
+(1 row)
+
+Anand.DB=# \set m `psql -d Anand.DB -t -c "SELECT count(*) from TRADE;" `
+Anand.DB=# \echo :m
+17
+
+++++++
+
+Anand.DB=# CREATE SEQUENCE mytable_myid_seq;
+CREATE SEQUENCE
+Anand.DB=# ALTER TABLE positions ADD myid INT UNIQUE;
+ALTER TABLE
+Anand.DB=# ALTER TABLE positions ALTER COLUMN myid
+Anand.DB-#         SET DEFAULT NEXTVAL('mytable_myid_seq');
+ALTER TABLE
+Anand.DB=# update positions SET myid = NEXTVAL('mytable_myid_seq');
+UPDATE 11
+Anand.DB=# Select * from POSITIONS;
+    name     | pos  |    last    | myid
+-------------+------+------------+------
+ APR-6400-PE |  100 | 2014-04-26 |    1
+ JUN-6500-PE |  -50 | 2014-04-26 |    2
+ MAR-6300-PE |  100 | 2014-04-26 |    3
+ MAR-6600-CE |   50 | 2014-04-26 |    4
+ MAR-6500-PE |   50 | 2014-04-26 |    5
+ MAR-6400-PE |   50 | 2014-04-26 |    6
+ MAR-6200-PE |   50 | 2014-04-26 |    7
+ MAY-6500-CE |  -50 | 2014-04-26 |    8
+ MAR-6500-CE |  -50 | 2014-04-26 |    9
+ MAY-6500-PE | -150 | 2014-04-26 |   10
+ JUN-6000-CE | -100 | 2014-04-26 |   11
+(11 rows)
+
++++++
+
+H:\workspace\Git\Anand>psql -d Anand.DB
+psql (9.3.4)
+WARNING: Console code page (437) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+Anand.DB=# \d trade
+      Table "public.trade"
+  Column  |  Type   | Modifiers
+----------+---------+-----------
+ id       | integer |
+ trd_dt   | date    |
+ type     | text    |
+ month    | text    |
+ name     | text    |
+ trd_qty  | integer |
+ ent_dt   | date    |
+ comments | text    |
+
+
+Anand.DB=# \d
+              List of relations
+ Schema |     Name      |   Type   |  Owner
+--------+---------------+----------+----------
+ public | expiry        | table    | postgres
+ public | expiry_id_seq | sequence | postgres
+ public | net           | table    | postgres
+ public | positions     | table    | postgres
+ public | trade         | table    | postgres
+ public | trade_bak     | table    | postgres
+(6 rows)
+
+
+Anand.DB=# CREATE SEQUENCE trade_id_seq START WITH 18;
+CREATE SEQUENCE
+
+Anand.DB=# ALTER TABLE trade ALTER COLUMN id SET DEFAULT nextval('trade_id_seq');
+ALTER TABLE
+
+Anand.DB=# \d trade
+                      Table "public.trade"
+  Column  |  Type   |                 Modifiers
+----------+---------+-------------------------------------------
+ id       | integer | default nextval('trade_id_seq'::regclass)
+ trd_dt   | date    |
+ type     | text    |
+ month    | text    |
+ name     | text    |
+ trd_qty  | integer |
+ ent_dt   | date    |
+ comments | text    |
+
+Anand.DB=# \i ins_new_trds.sql
+DROP OLD TRADE BACKUP TABLE
+DROP TABLE
+
+CREATE NEW TRADE BACKUP TABLE
+SELECT 17
+INSERT New Trades
+
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+
+DISPLAY TRADES
+ id |   trd_dt   | type | month | name | trd_qty |   ent_dt   | comments
+----+------------+------+-------+------+---------+------------+----------
+  1 | 2014-03-26 | CE   | JUN   | 6000 |    -100 | 2014-04-17 | INT 00
+  2 | 2014-03-26 | PE   | MAR   | 6200 |      50 | 2014-04-17 | INT 00
+  3 | 2014-03-26 | PE   | MAR   | 6300 |     100 | 2014-04-17 | INT 00
+  4 | 2014-03-26 | PE   | APR   | 6400 |     100 | 2014-04-17 | INT 00
+  5 | 2014-03-26 | PE   | MAR   | 6400 |      50 | 2014-04-17 | INT 00
+  6 | 2014-03-26 | CE   | MAR   | 6500 |     -50 | 2014-04-17 | INT 00
+  7 | 2014-03-26 | CE   | MAY   | 6500 |     -50 | 2014-04-17 | INT 00
+  8 | 2014-03-26 | PE   | JUN   | 6500 |     -50 | 2014-04-17 | INT 00
+  9 | 2014-03-26 | PE   | MAR   | 6500 |      50 | 2014-04-17 | INT 00
+ 10 | 2014-03-26 | PE   | MAY   | 6500 |    -150 | 2014-04-17 | INT 00
+ 11 | 2014-03-26 | CE   | MAR   | 6600 |      50 | 2014-04-17 | INT 00
+ 12 | 2014-03-27 | PE   | APR   | 6400 |    -100 | 2014-04-17 | MAR 27
+ 13 | 2014-03-27 | CE   | MAR   | 6500 |      50 | 2014-04-17 | MAR 27
+ 14 | 2014-03-27 | PE   | APR   | 6500 |     100 | 2014-04-17 | MAR 27
+ 15 | 2014-03-27 | CE   | MAR   | 6600 |     -50 | 2014-04-17 | MAR 27
+ 16 | 2014-03-28 | CE   | MAY   | 6500 |     -50 | 2014-04-17 | MAR 28
+ 17 | 2014-03-28 | CE   | APR   | 6800 |      50 | 2014-04-17 | MAR 28
+ 18 | 2014-04-01 | PE   | APR   | 6500 |    -100 | 2014-04-17 | APR 01
+ 19 | 2014-04-01 | PE   | APR   | 6600 |     100 | 2014-04-17 | APR 01
+ 20 | 2014-04-02 | PE   | APR   | 6600 |    -100 | 2014-04-17 | APR 02
+ 
+ ++++++
