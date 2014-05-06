@@ -1,5 +1,5 @@
 \echo Dropping Table TRADE
-Drop table TRADE;
+Drop table IF EXISTS TRADE;
 
 /*
 

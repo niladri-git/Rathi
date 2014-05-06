@@ -1,0 +1,24 @@
+$ deletedb  Anand.DB
+
+$ createdb  Anand.DB
+
+$ psql -d Anand.DB
+psql (9.3.4)
+WARNING: Console code page (850) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+Anand.DB=# \d
+Anand.DB=# \q
+
+$ psql -d Anand.DB < init_run.sql
+
+$ psql -d Anand.DB < ins_new_trds.sql
+
+$ psql -d Anand.DB < upd_trds.sql
+
+$ psql -d Anand.DB < net_pos.sql
+
++++
+

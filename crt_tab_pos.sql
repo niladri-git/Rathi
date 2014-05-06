@@ -1,5 +1,5 @@
 \echo Dropping Table POSITIONS;
-Drop table POSITIONS;
+Drop table IF EXISTS POSITIONS;
 
 \echo
 \echo Creating Table POSITIONS;
