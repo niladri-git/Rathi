@@ -10,7 +10,7 @@ CREATE TABLE TRADE_BAK AS
 \echo Updating Trades ...
 \echo
 
-\i ins_trd_21-04.sql;
+\i ins_trd_09-05.sql;
 
 \echo
 \echo TOTAL TRADES

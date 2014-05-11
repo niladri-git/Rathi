@@ -18,6 +18,12 @@ CREATE TABLE TRADE_BAK AS
 \i ins_trd_15-04.sql;
 \i ins_trd_16-04.sql;
 
+\i ins_trd_21-04.sql;
+\i ins_trd_23-04.sql;
+\i ins_trd_28-04.sql;
+
+\i ins_trd_06-05.sql;
+
 \echo
 \echo TOTAL TRADES
 SELECT count(*) FROM TRADE;

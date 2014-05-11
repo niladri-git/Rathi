@@ -22,3 +22,16 @@ $ psql -d Anand.DB < net_pos.sql
 
 +++
 
+$ cat upd_trds.sql
+
+move old trades to ins_new_trds.sql
+
+\i ins_trd_21-04.sql;
+\i ins_trd_23-04.sql;
+\i ins_trd_28-04.sql;
+
+Insert cur trades in upd_trds.sql
+
+\i ins_trd_06-05.sql;
+
+++++
