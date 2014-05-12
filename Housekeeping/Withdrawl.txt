@@ -1,0 +1,22 @@
+Date: 12-May-2014
+
+Avaliable limit Rs: 356041.52
+Maximum withdrawal limit Rs:355541.52
+
+
+Cash Balance 437524.71 
+Notional Cash 100000.00 
+Collateral Value 0.00 
+Pay In Amount 20000.00 
+Ad Hoc Margin 0.00 
+Total Avaliable Balance  557524.71  
+
+Span Margin 26555.00 
+Exposure Margin 143038.19 
+Premium Present 30512.50 
+Margin Used  -201483.19  
+
+Unrealised MtoM Present 1377.50 
+Maximum Withdrawable Limits 355541.52 
+
++++

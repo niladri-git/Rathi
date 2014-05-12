@@ -35,3 +35,15 @@ Insert cur trades in upd_trds.sql
 \i ins_trd_06-05.sql;
 
 ++++
+
+Run:
+
+- Make the above changes
+
+$ psql -d Anand.DB < net_pos.sql
+
+$ psql -d Anand.DB < upd_trds.sql
+
+$ psql -d Anand.DB < net_pos.sql
+
++++++
