@@ -24,6 +24,7 @@ CREATE TABLE TRADE_BAK AS
 
 \i ins_trd_06-05.sql;
 \i ins_trd_09-05.sql;
+\i ins_trd_12-05.sql;
 
 \echo
 \echo TOTAL TRADES
