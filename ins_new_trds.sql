@@ -30,6 +30,8 @@ CREATE TABLE TRADE_BAK AS
 \i ins_trd_15-05.sql;
 \i ins_trd_16-05.sql;
 
+\i ins_trd_19-05.sql;
+
 \echo
 \echo TOTAL TRADES
 SELECT count(*) FROM TRADE;
