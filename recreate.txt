@@ -1,4 +1,4 @@
-$ deletedb  Anand.DB
+$ dropdb  Anand.DB
 
 $ createdb  Anand.DB
 
