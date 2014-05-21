@@ -20,3 +20,7 @@ ALTER TABLE TRADE ALTER COLUMN id SET DEFAULT nextval('trade_id_seq');
 \echo	
 \echo Total Restored Trades
 SELECT count(*) FROM TRADE;
+
+\echo CALCULATE POSITIONS
+\echo
+\i crt_tab_pos.sql;
