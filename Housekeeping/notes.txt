@@ -1,3 +1,1 @@
-Purpose: Trade related stuff
-
-Merge -> master
+Purpose: Stable Trunk
