@@ -7,7 +7,6 @@ else
   DB=Anand.DB
 fi
 
-echo "Changing dir"
 cd ..
 
 echo "Deleting DB"
