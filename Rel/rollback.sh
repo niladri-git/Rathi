@@ -8,23 +8,23 @@ else
   echo
 fi
 
-cur_ver=`cat version`
-echo "Current Version:          $cur_ver"
+ins_ver=`grep Version: version | cut -d" " -f2`
+echo "Installed Version:          $ins_ver"
 
-prev_ver=`cat version.old`
-echo "Rollback Version:         $prev_ver"
+rol_ver=`grep Version: version.old | cut -d" " -f2`
+echo "Rollback Version:           $rol_ver"
 echo
 
 cd ..
 
-if [ $prev_ver -ge $cur_ver ]; then
-  echo "Unable to rollback"
+if [ $ins_ver -le $rol_ver ]; then
+  echo "Rollback version is not less than Installed Version"
   
 else
   echo "Rolling back current trades"
   psql -d $DB < rol_new_trds.sql
 
   cp $rel_dir/version.old $rel_dir/version
-  echo "Rolled back to Version: $prev_ver"
+  echo "Rolled back to Version: $rol_ver"
 
 fi

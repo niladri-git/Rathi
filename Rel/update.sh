@@ -8,16 +8,16 @@ else
   echo
 fi
 
-old_ver=`cat version`
-echo "Old Version:          $old_ver"
+ins_ver=`cat version | grep Version: | cut -d" " -f2`
+echo "Installed Version:          $ins_ver"
 
 cd ..
 
-cur_ver=`ls -ltr | grep ins_ | wc -l`
-echo "Current Version: $cur_ver"
+upd_ver=`ls -ltr | grep ins_ | wc -l`
+echo "Update Version:        $upd_ver"
 echo
 
-if [ $old_ver -eq $cur_ver ]; then
+if [ $ins_ver -eq $upd_ver ]; then
   echo "Already Up to date"
   
 else
@@ -28,8 +28,15 @@ else
   cp $rel_dir/version $rel_dir/version.old
   
   inc_ver=`cat upd_trds.sql | grep ins_ | wc -l`
-  let new_ver="$old_ver + $inc_ver"
-  echo $new_ver > $rel_dir/version
+  let new_ver="$ins_ver + $inc_ver"
+  
+  echo > $rel_dir/version
+  echo Version: $new_ver >> $rel_dir/version
+  
+  date=`date +%d-%m-%Y`
+  
+  echo "Installation date: $date" >> $rel_dir/version
+  echo >> $rel_dir/version
 
   echo "Updated to Version: $new_ver"
 
