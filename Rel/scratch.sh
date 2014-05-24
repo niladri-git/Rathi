@@ -31,9 +31,16 @@ psql -d $DB < upd_trds.sql
 echo "Calculating Net Position"
 psql -d $DB < net_pos.sql
 
-cp $rel_dir/version $rel_dir/version.old
-
 cur_ver=`ls -ltr | grep ins_ | wc -l`
-echo $cur_ver > $rel_dir/version
+
+echo > $rel_dir/version
+echo Version: $cur_ver >> $rel_dir/version
+  
+date=`date +%d-%m-%Y`
+  
+echo "Installation date: $date" >> $rel_dir/version
+echo >> $rel_dir/version
+
+cp $rel_dir/version $rel_dir/version.old
 
 echo "Current Version: $cur_ver"

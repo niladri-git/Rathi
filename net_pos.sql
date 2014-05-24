@@ -15,3 +15,6 @@ CREATE TABLE NET AS
 
 \echo	
 SELECT * FROM NET;
+
+\set last_td `psql -d Anand.DB -t -c "SELECT max(trd_dt) from TRADE;" `
+\echo Last Trade date: :last_td
